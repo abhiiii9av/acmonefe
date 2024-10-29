@@ -1,11 +1,11 @@
 // src/App.js
-import React, { useState, useEffect } from 'react';
-import { auth } from './FirebaseConfig';
-import SignIn from './SignIn';
+import React, { useState, useEffect } from "react";
+import { auth } from "./FirebaseConfig";
+import SignIn from "./SignIn";
 
 const App = () => {
   const [user, setUser] = useState(null);
-  const [token, setToken] = useState('');
+  const [token, setToken] = useState("");
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
@@ -16,7 +16,7 @@ const App = () => {
         });
       } else {
         setUser(null);
-        setToken('');
+        setToken("");
       }
     });
 
@@ -25,16 +25,14 @@ const App = () => {
 
   return (
     <div>
-              <SignIn />
+      <SignIn />
       {user && (
         <div>
-          
           <h1>Welcome, {user.displayName}</h1>
           <p>Your Firebase ID Token: {token}</p>
           <button onClick={() => auth.signOut()}>Sign Out</button>
         </div>
-      ) 
-      }
+      )}
     </div>
   );
 };
